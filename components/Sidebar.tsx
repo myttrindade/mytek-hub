@@ -158,7 +158,7 @@ export default function Sidebar({
           alt="mytek"
           width={88}
           height={88}
-          className="h-11 w-11 flex-shrink-0 rounded-[10px] bg-white"
+          className="h-10 w-10 flex-shrink-0 rounded-[9px] bg-white"
         />
         <span className="text-base font-semibold tracking-tight text-white">
           mytek
