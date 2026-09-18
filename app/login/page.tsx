@@ -88,7 +88,7 @@ export default function LoginPage() {
             Hub
           </span>
         </div>
-        <h1 className="mb-1 text-xl font-semibold">Entrar no Mytek Hub</h1>
+        <h1 className="mb-1 text-xl font-semibold text-slate-900">Entrar no Mytek Hub</h1>
         <p className="mb-6 text-sm text-slate-500">
           {mode === "login"
             ? "Entre com seu usuário e senha."
