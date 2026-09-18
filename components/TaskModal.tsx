@@ -244,7 +244,7 @@ export default function TaskModal({
                     salvarCampo({ title: title.trim() })
                   }
                   placeholder="Nome da tarefa..."
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 focus:border-slate-500 focus:outline-none"
                 />
               </div>
 
@@ -261,7 +261,7 @@ export default function TaskModal({
                   }
                   rows={4}
                   placeholder="Detalhes da tarefa..."
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-700 focus:border-slate-500 focus:outline-none"
                 />
               </div>
 
@@ -672,7 +672,7 @@ function ChecklistTab({
           value={novoItem}
           onChange={(e) => setNovoItem(e.target.value)}
           placeholder="Novo item..."
-          className="flex-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm focus:border-slate-500 focus:outline-none"
+          className="flex-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm text-slate-700 focus:border-slate-500 focus:outline-none"
         />
         <button
           type="submit"
@@ -930,7 +930,7 @@ function ComentariosTab({
           value={novoComentario}
           onChange={(e) => setNovoComentario(e.target.value)}
           placeholder="Escreva um comentário..."
-          className="flex-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm focus:border-slate-500 focus:outline-none"
+          className="flex-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm text-slate-700 focus:border-slate-500 focus:outline-none"
         />
         <button
           type="submit"
@@ -1043,13 +1043,13 @@ function HorasTab({
           onChange={(e) => setHoras(e.target.value)}
           placeholder="Horas (ex: 1.5)"
           inputMode="decimal"
-          className="w-28 rounded-lg border border-slate-300 px-3 py-1.5 text-sm focus:border-slate-500 focus:outline-none"
+          className="w-28 rounded-lg border border-slate-300 px-3 py-1.5 text-sm text-slate-700 focus:border-slate-500 focus:outline-none"
         />
         <input
           value={nota}
           onChange={(e) => setNota(e.target.value)}
           placeholder="O que foi feito (opcional)"
-          className="min-w-[150px] flex-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm focus:border-slate-500 focus:outline-none"
+          className="min-w-[150px] flex-1 rounded-lg border border-slate-300 px-3 py-1.5 text-sm text-slate-700 focus:border-slate-500 focus:outline-none"
         />
         <button
           type="submit"

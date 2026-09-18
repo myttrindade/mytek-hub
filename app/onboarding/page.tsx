@@ -135,7 +135,7 @@ export default function OnboardingPage() {
                   setWorkspaceName(e.target.value.slice(0, MAX_WORKSPACE))
                 }
                 placeholder="Ex: Minha Empresa"
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 pr-12 text-sm focus:border-slate-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 pr-12 text-sm text-slate-700 focus:border-[#175dfc] focus:outline-none"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">
                 {workspaceName.length}
@@ -165,7 +165,7 @@ export default function OnboardingPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value.slice(0, MAX_NAME))}
                 placeholder="Seu nome"
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 pr-12 text-sm focus:border-slate-500 focus:outline-none"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 pr-12 text-sm text-slate-700 focus:border-[#175dfc] focus:outline-none"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400">
                 {name.length}
