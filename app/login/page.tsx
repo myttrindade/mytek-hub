@@ -80,7 +80,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
-      <div className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+      <div className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-8 text-slate-700 shadow-sm">
         <div className="mb-6 flex items-center gap-2">
           <Image src="/brand/logo.png" alt="mytek" width={28} height={24} className="h-6 w-auto" />
           <span className="text-sm font-semibold tracking-tight text-slate-900">mytek</span>

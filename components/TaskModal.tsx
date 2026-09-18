@@ -203,7 +203,7 @@ export default function TaskModal({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl md:flex-row"
+        className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white text-slate-700 shadow-xl md:flex-row"
       >
         <div className="flex-1 overflow-y-auto p-6">
           <div className="mb-1 flex items-start justify-between gap-4">
