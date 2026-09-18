@@ -153,13 +153,15 @@ export default function Sidebar({
   return (
     <aside className="flex h-full min-h-screen w-64 flex-shrink-0 flex-col bg-navy text-slate-300">
       <div className="flex items-center gap-2 px-5 py-5">
-        <Image
-          src="/brand/logo-white.png"
-          alt="mytek"
-          width={28}
-          height={24}
-          className="h-6 w-auto flex-shrink-0"
-        />
+        <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white">
+          <Image
+            src="/brand/logo.png"
+            alt="mytek"
+            width={28}
+            height={24}
+            className="h-4 w-auto"
+          />
+        </span>
         <span className="text-sm font-semibold tracking-tight text-white">
           mytek
         </span>
@@ -207,7 +209,7 @@ export default function Sidebar({
                     onClick={onNavigate}
                     className={`flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                       active
-                        ? "bg-brand text-white"
+                        ? "bg-[#175dfc] text-white"
                         : "text-slate-400 hover:bg-white/5 hover:text-white"
                     }`}
                   >
@@ -303,7 +305,7 @@ function ExpandableNavItem({
     <div>
       <div
         className={`group flex items-center gap-2.5 rounded-lg pr-1 text-sm font-medium transition-colors ${
-          active ? "bg-brand text-white" : "text-slate-400 hover:bg-white/5 hover:text-white"
+          active ? "bg-[#175dfc] text-white" : "text-slate-400 hover:bg-white/5 hover:text-white"
         }`}
       >
         <Link
