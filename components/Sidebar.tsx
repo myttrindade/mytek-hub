@@ -147,7 +147,7 @@ export default function Sidebar({
     <aside className="flex h-full min-h-screen w-64 flex-shrink-0 flex-col bg-navy text-slate-300">
       <div className="flex items-center gap-2 px-5 py-5">
         <Image
-          src="/brand/logo.png"
+          src="/brand/logo-white.png"
           alt="mytek"
           width={28}
           height={24}
