@@ -153,13 +153,13 @@ export default function Sidebar({
   return (
     <aside className="flex h-full min-h-screen w-64 flex-shrink-0 flex-col bg-navy text-slate-300">
       <div className="flex items-center gap-3 px-5 py-5">
-        <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-white">
+        <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white">
           <Image
             src="/brand/logo.png"
             alt="mytek"
             width={64}
             height={55}
-            className="h-8 w-auto"
+            className="h-auto w-[30px]"
           />
         </span>
         <span className="text-base font-semibold tracking-tight text-white">
