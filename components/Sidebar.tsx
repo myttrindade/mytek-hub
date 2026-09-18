@@ -153,15 +153,13 @@ export default function Sidebar({
   return (
     <aside className="flex h-full min-h-screen w-64 flex-shrink-0 flex-col bg-navy text-slate-300">
       <div className="flex items-center gap-3 px-5 py-5">
-        <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white">
-          <Image
-            src="/brand/logo.png"
-            alt="mytek"
-            width={64}
-            height={55}
-            className="h-auto w-[30px]"
-          />
-        </span>
+        <Image
+          src="/brand/logo-square.png"
+          alt="mytek"
+          width={88}
+          height={88}
+          className="h-11 w-11 flex-shrink-0 rounded-[10px] bg-white"
+        />
         <span className="text-base font-semibold tracking-tight text-white">
           mytek
         </span>
