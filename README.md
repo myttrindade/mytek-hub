@@ -53,6 +53,13 @@ a usar o quadro de tarefas, a wiki e as mensagens (links no menu lateral).
 Pra testar o chat de verdade, crie uma segunda conta (outro usuário) numa
 aba anônima.
 
+Pra rodar os testes (lógica de resolução das tools do MCP — nome de
+projeto/pessoa por texto livre, ambiguidade, regras de visibilidade):
+
+```bash
+npm test
+```
+
 ## 3. Publicar na Vercel
 
 1. Suba esse projeto pra um repositório no GitHub da MyTek.
