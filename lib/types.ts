@@ -335,3 +335,62 @@ export interface Message {
   content: string;
   created_at: string;
 }
+
+// Catálogo de Sistemas: inventário técnico de tudo que a mytek já
+// construiu (sites, apps, dashboards) — não confundir com "Project" acima,
+// que são os projetos DE CLIENTE (tarefas, portal, faturas). Aqui é "o que
+// existe e como foi feito".
+export type CatalogCategory =
+  | "no-ar"
+  | "pessoal"
+  | "clientes-mytek"
+  | "projetos-mytek";
+
+export interface CatalogHosting {
+  platform: string;
+  url: string;
+  notes: string;
+}
+
+export interface CatalogLink {
+  label: string;
+  url: string;
+}
+
+export interface CatalogChangelogEntry {
+  date: string;
+  hash: string;
+  message: string;
+}
+
+export interface CatalogSystem {
+  id: string;
+  slug: string;
+  name: string;
+  subtitle: string | null;
+  purpose: string | null;
+  current_status: string | null;
+  status: string;
+  category: CatalogCategory;
+  languages: string[];
+  tools: string[];
+  hosting: CatalogHosting[];
+  links: CatalogLink[];
+  c4_svg: string | null;
+  local_path: string | null;
+  repo_url: string | null;
+  first_commit_date: string | null;
+  last_known_commit: string | null;
+  last_scan_at: string | null;
+  changelog: CatalogChangelogEntry[];
+  created_by: string | null;
+  created_at: string;
+}
+
+// Formato usado só pelo seed (lib/catalogSeed.ts, gerado a partir do
+// painel-projetos local) — mesmos campos do CatalogSystem, exceto os que
+// o banco preenche sozinho (id, created_by, created_at).
+export type CatalogSeedItem = Omit<
+  CatalogSystem,
+  "id" | "created_by" | "created_at"
+>;

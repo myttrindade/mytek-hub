@@ -13,6 +13,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
   ClipboardListIcon,
+  FileGridIcon,
   FolderIcon,
   MessageCircleIcon,
   MoonIcon,
@@ -43,6 +44,15 @@ const SECOES: {
       // Arquivos não tem mais tela própria — cada projeto tem sua aba
       // "Arquivos" (ver ProjectTabs), então não tem link avulso aqui.
       { href: "/projetos", label: "Projetos", icon: FolderIcon },
+    ],
+  },
+  {
+    titulo: "Catálogo",
+    itens: [
+      // Inventário técnico (sites, apps, dashboards que a mytek já
+      // construiu) — não confundir com "Projetos" acima, que são os
+      // projetos de CLIENTE (tarefas, portal, faturas).
+      { href: "/catalogo-sistemas", label: "Catálogo de Sistemas", icon: FileGridIcon },
     ],
   },
   {
