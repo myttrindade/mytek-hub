@@ -11,14 +11,20 @@ mesmo login:
   próprio banco em vez de vir com um app inteiro de terceiros junto.
 - **Mensagens** (`/chat`): conversas diretas e por canal entre pessoas do
   time, em tempo real.
+- **Integração com IA** (`/conta/ia`): cada pessoa gera um token pessoal e
+  conecta a própria IA (Claude Desktop, Claude Code etc.) num servidor MCP
+  (Model Context Protocol) exposto pelo hub — a partir daí, pedir "cria uma
+  tarefa no projeto X" pra IA já cria de verdade, em nome de quem pediu.
+  Detalhes na seção [Servidor MCP](#servidor-mcp-model-context-protocol)
+  abaixo.
 
 Além disso, o projeto inclui gestão de **Projetos**, **Calendário**,
 **Solicitações** e um **portal de acompanhamento para clientes**
 (`/progresso/[token]`), com faturas, documentos e linha do tempo.
 
 **Stack:** Next.js (App Router) + Supabase (banco + autenticação) +
-Tailwind + BlockNote/Mantine (editor da wiki), pronto pra abrir no Cursor e
-publicar na Vercel.
+Tailwind + BlockNote/Mantine (editor da wiki) + `mcp-handler`/`zod` para o
+servidor MCP, pronto pra abrir no Cursor e publicar na Vercel.
 
 ## 1. Criar o projeto no Supabase
 
@@ -63,6 +69,42 @@ A UI usa a paleta da marca mytek (azul `#175dfc` no tema claro,
 `#3180ff` no escuro) — ver `app/globals.css` e `tailwind.config.ts`. O
 ícone da marca está em `public/brand/logo.png`.
 
+## Servidor MCP (Model Context Protocol)
+
+O hub expõe um servidor [MCP](https://modelcontextprotocol.io/) em
+`/api/mcp` (`app/api/[transport]/route.ts`, construído com
+[`mcp-handler`](https://github.com/vercel/mcp-handler) + validação de
+entrada com Zod), pra que qualquer pessoa do time opere o hub direto pela
+própria IA (Claude Desktop, Claude Code, ou qualquer cliente MCP),
+sem precisar abrir o site.
+
+**Autenticação.** Não existe sessão de login normal (cookie) numa chamada
+MCP — quem chama é a IA de alguém, de fora do navegador. Em
+`/conta/ia` cada pessoa gera um **token pessoal** (`lib/mcp-tokens.ts`,
+`supabase/migrations/0031_personal_ai_tokens.sql`) e configura o cliente MCP
+com a URL `https://<seu-dominio>/api/mcp` e esse token no header
+`Authorization`. A rota valida o token a cada chamada (`withMcpAuth`) e
+aplica, na mão, as mesmas regras de visibilidade que a pessoa já tem no
+site (projetos próprios, públicos, ou onde ela tem tarefa) — ver
+`lib/mcp-server-helpers.ts`.
+
+**Tools disponíveis:**
+
+| Tool | O que faz |
+| --- | --- |
+| `now_listar_projetos` | Lista os projetos visíveis pra quem chamou, com filtro por nome. |
+| `now_criar_tarefa` | Cria uma tarefa de verdade (projeto, prazo, responsável, status). |
+| `now_listar_tarefas` | Lista tarefas com filtros de projeto, status e responsável. |
+| `now_atualizar_status_tarefa` | Muda o status de uma tarefa existente pelo título. |
+| `now_editar_tarefa` | Edita título, descrição, prazo, responsável e/ou status de uma tarefa. |
+| `now_comentar_tarefa` | Adiciona um comentário numa tarefa existente. |
+
+Cada tool resolve nomes ambíguos de forma conversacional (ex: `projeto` e
+`responsavel` aceitam nome parcial; se baterem com mais de um resultado, a
+tool devolve a lista pra IA perguntar de novo em vez de adivinhar) e
+retorna tanto texto quanto `structuredContent`, para uso tanto por um
+agente conversacional quanto por um pipeline programático.
+
 ## Estrutura do projeto
 
 ```
@@ -76,9 +118,11 @@ app/
   (app)/chat/             → mensagens diretas e por canal
   (app)/projetos/         → gestão de projetos
   (app)/solicitacoes/     → solicitações internas
+  (app)/conta/ia/         → geração de tokens pessoais pra IA (MCP)
+  api/[transport]/        → servidor MCP (tools do Now Organiza)
   progresso/[token]/      → portal público de acompanhamento do cliente
 components/                → componentes de UI e lógica de cada módulo
-lib/                       → clientes Supabase, tipos e utilitários
+lib/                       → clientes Supabase, tipos, utilitários e helpers do MCP
 middleware.ts               → protege as rotas (exige login)
 supabase/migrations/        → SQL do banco de dados
 ```
