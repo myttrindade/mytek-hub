@@ -1,5 +1,7 @@
 # Mytek Hub
 
+![Tela de login do Mytek Hub](docs/screenshots/login.png)
+
 Hub interno de operação para equipes: três módulos no mesmo projeto, com o
 mesmo login:
 
