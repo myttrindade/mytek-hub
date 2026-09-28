@@ -1,4 +1,9 @@
-# Mytek Hub
+# Mytek Hub Projeto
+
+> Versão de projeto/protótipo do Mytek Hub, publicada aqui no GitHub para
+> portfólio. O nome interno do app (tela de login, etc.) continua "Mytek
+> Hub" — só o repositório/portfólio usa "Projeto" pra diferenciar de uma
+> futura versão oficial da mytek.
 
 ![Tela de login do Mytek Hub](docs/screenshots/login.png)
 
