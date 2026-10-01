@@ -56,6 +56,9 @@ const SECOES: {
     titulo: "Conta",
     itens: [
       { href: "/conta/ia", label: "Integração com IA", icon: SparklesIcon },
+      // Link externo (agente-now-organiza) — abre em outra aba, ver
+      // tratamento especial no render (item.href começa com "http").
+      { href: "https://agente-now-organiza.onrender.com", label: "Agente mytek", icon: SparklesIcon },
     ],
   },
 ];
@@ -200,17 +203,14 @@ export default function Sidebar({
                   );
                 }
 
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={onNavigate}
-                    className={`flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                      active
-                        ? "bg-[#175dfc] text-white"
-                        : "text-slate-400 hover:bg-white/5 hover:text-white"
-                    }`}
-                  >
+                const externo = item.href.startsWith("http");
+                const classeItem = `flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                  active
+                    ? "bg-[#175dfc] text-white"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                }`;
+                const conteudoItem = (
+                  <>
                     <Icon className="h-4 w-4 flex-shrink-0" />
                     <span className="flex-1 truncate">{item.label}</span>
                     {showBadge && (
@@ -218,6 +218,33 @@ export default function Sidebar({
                         {badgeCount > 99 ? "99+" : badgeCount}
                       </span>
                     )}
+                  </>
+                );
+
+                // Link externo (ex: agente-now-organiza) abre em outra aba —
+                // <Link> do Next é só pra rotas internas desse app.
+                if (externo) {
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={classeItem}
+                    >
+                      {conteudoItem}
+                    </a>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={onNavigate}
+                    className={classeItem}
+                  >
+                    {conteudoItem}
                   </Link>
                 );
               })}
