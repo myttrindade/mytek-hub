@@ -4,13 +4,18 @@ import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/Button";
 import { Badge } from "./ui/Badge";
-import { CopyIcon, SparklesIcon, Trash2Icon } from "./ui/icons";
+import { CopyIcon, LinkIcon, SparklesIcon, Trash2Icon } from "./ui/icons";
 import { formatarRelativo } from "@/lib/format";
 import { criarTokenPessoal, revogarTokenPessoal } from "@/lib/actions/personal-tokens";
 import type { PersonalApiToken } from "@/lib/types";
 
 const campoClasse =
   "w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink placeholder-ink-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15";
+
+// Agente de exemplo (repositório agente-now-organiza) que já consome esse
+// mesmo servidor MCP — link direto pra quem quiser ver/usar sem precisar
+// configurar nada.
+const URL_AGENTE_EXEMPLO = "https://agente-now-organiza.onrender.com";
 
 // Tela onde cada pessoa gera/revoga o próprio token pra conectar a IA dela
 // (Claude Desktop, Claude Code etc.) ao Now Organiza via MCP — depois de
@@ -105,6 +110,24 @@ export default function PersonalAiTokens({
           faz de verdade no sistema, em seu nome.
         </p>
       </div>
+
+      <a
+        href={URL_AGENTE_EXEMPLO}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-between gap-3 rounded-2xl border border-brand/30 bg-brand/5 px-5 py-4 transition-colors hover:bg-brand/10"
+      >
+        <div>
+          <p className="text-sm font-semibold text-ink">
+            Não quer configurar nada agora? Experimente um agente de exemplo
+          </p>
+          <p className="mt-0.5 text-xs text-ink-muted">
+            Já conectado nesse mesmo servidor — peça algo em português e veja
+            as ferramentas sendo chamadas em tempo real, direto no navegador.
+          </p>
+        </div>
+        <LinkIcon className="h-5 w-5 flex-shrink-0 text-brand" />
+      </a>
 
       {tokenRecemCriado && (
         <div className="rounded-2xl border border-success/30 bg-success-light px-5 py-4">
